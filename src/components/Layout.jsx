@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShieldCheck, Menu, X, ChevronDown, Heart, FileText, Percent, Activity, Umbrella, MapPin, Briefcase, Calculator, Home, CreditCard, Car } from 'lucide-react';
+import { ShieldCheck, Menu, X, ChevronDown, Heart, FileText, Percent, Activity, Umbrella, MapPin, Briefcase, Calculator, Home, CreditCard, Car, TrendingUp, Smartphone, Dog } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
@@ -15,16 +15,19 @@ const Navbar = () => {
             items: [
                 { name: 'Krankenkasse', path: '/krankenkasse', icon: Heart },
                 { name: 'Autoversicherung', path: '/autoversicherung', icon: Car },
-                { name: 'Lebensversicherung', path: '/leben', icon: Umbrella },
+                { name: 'Lebensversicherung', path: '/lebensversicherung', icon: Umbrella },
+                { name: 'Tierversicherung', path: '/tierversicherung', icon: Dog },
             ]
         },
         {
             title: "Finanzen",
             items: [
                 { name: 'Kredit-Vergleich', path: '/kredit', icon: Percent },
+                { name: 'Säule 3a', path: '/saeule-3a', icon: Activity },
                 { name: 'Hypotheken', path: '/hypothek', icon: Home },
-                { name: 'Säule 3a', path: '/saeule-3a', icon: Briefcase },
                 { name: 'Kreditkarten', path: '/kreditkarte', icon: CreditCard },
+                { name: 'Trading / Aktien', path: '/trading', icon: TrendingUp },
+                { name: 'Handy-Abos', path: '/handy-abo', icon: Smartphone },
                 { name: 'Arbeitslosengeld', path: '/arbeitslosengeld', icon: Calculator },
             ]
         },

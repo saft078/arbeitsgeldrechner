@@ -13,7 +13,11 @@ import Pillar3a from './pages/Pillar3a';
 import Mortgage from './pages/Mortgage';
 import CreditCardPage from './pages/CreditCard';
 import CarInsurance from './pages/CarInsurance';
+import CarInsurance from './pages/CarInsurance';
 import LifeInsurance from './pages/LifeInsurance';
+import Trading from './pages/Trading';
+import Mobile from './pages/Mobile';
+import PetInsurance from './pages/PetInsurance';
 import Relocation from './pages/Relocation';
 
 // Placeholder Components
@@ -37,6 +41,9 @@ const App = () => {
         <Route path="/saeule-3a" element={<Pillar3a />} />
         <Route path="/hypothek" element={<Mortgage />} />
         <Route path="/kreditkarte" element={<CreditCardPage />} />
+        <Route path="/trading" element={<Trading />} />
+        <Route path="/handy-abo" element={<Mobile />} />
+        <Route path="/tierversicherung" element={<PetInsurance />} />
         <Route path="/umzug-schweiz" element={<Relocation />} />
         <Route path="/kuendigen" element={<Termination />} />
         <Route path="/organspende" element={<OrganDonation />} />
