@@ -17,10 +17,10 @@ const Credit = () => {
 
     useEffect(() => {
         const banks = [
-            { name: "Good Finance", rate: 4.4, logo: "GF", color: "bg-emerald-600", tag: "Tiefster Zins" },
-            { name: "Bank-now", rate: 4.9, logo: "BN", color: "bg-yellow-500" },
-            { name: "Migros Bank", rate: 4.7, logo: "MB", color: "bg-orange-500" },
-            { name: "Cembra", rate: 7.95, logo: "CM", color: "bg-black" },
+            { name: "Good Finance", rate: 4.4, logo: "GF", color: "bg-emerald-600", tag: "Tiefster Zins", url: "https://www.goodfinance.ch" },
+            { name: "Bank-now", rate: 4.9, logo: "BN", color: "bg-yellow-500", url: "https://www.bank-now.ch" },
+            { name: "Migros Bank", rate: 4.7, logo: "MB", color: "bg-orange-500", url: "https://www.migrosbank.ch" },
+            { name: "Cembra", rate: 7.95, logo: "CM", color: "bg-black", url: "https://www.cembra.ch" },
         ];
         setOffers(banks.sort((a, b) => a.rate - b.rate));
     }, []);
@@ -164,9 +164,9 @@ const Credit = () => {
                                     </div>
                                     <div className="text-xs font-medium text-slate-400 uppercase tracking-wider mb-3">CHF / Monat</div>
 
-                                    <button className="w-full md:w-auto py-3 px-6 text-sm flex items-center justify-center gap-2 font-bold text-slate-600 bg-slate-50 rounded-lg hover:bg-slate-100 transition-all border border-slate-200">
-                                        Tarifdetails <ArrowRight size={16} />
-                                    </button>
+                                    <a href={bank.url} target="_blank" rel="noopener noreferrer" className="w-full md:w-auto py-3 px-6 text-sm flex items-center justify-center gap-2 font-bold text-slate-600 bg-slate-50 rounded-lg hover:bg-slate-100 transition-all border border-slate-200">
+                                        Zu {bank.name} <ArrowRight size={16} />
+                                    </a>
                                 </div>
                             </div>
                         </motion.div>

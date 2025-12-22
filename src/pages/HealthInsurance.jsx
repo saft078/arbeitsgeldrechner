@@ -7,12 +7,12 @@ import SEO from '../components/SEO';
 
 // MOCK DATA - Realistic 2025 samples
 const MOCK_INSURERS = [
-    { id: 1, name: 'Sanitas', model: 'CallMed', price: 345.50, rating: 4.8, franchise: 2500, features: ['Freie Arztwahl', 'Telemedizin first'] },
-    { id: 2, name: 'SWICA', model: 'Favorit', price: 362.20, rating: 4.9, franchise: 2500, features: ['Apotheken-Rabatt', 'Sport-Beitrag'] },
-    { id: 3, name: 'CSS', model: 'Standard', price: 339.80, rating: 4.6, franchise: 2500, features: ['Digital Health App'] },
-    { id: 4, name: 'Helsana', model: 'BeneFit', price: 351.00, rating: 4.7, franchise: 1500, features: ['Bonusprogramm'] },
-    { id: 5, name: 'Assura', model: 'Pharma', price: 298.50, rating: 4.2, franchise: 2500, features: ['Günstigste Prämie', 'Apothekenbindung'] },
-    { id: 6, name: 'Groupe Mutuel', model: 'PrimaTel', price: 312.40, rating: 4.4, franchise: 2500, features: ['Telemedizin'] },
+    { id: 1, name: 'Sanitas', model: 'CallMed', price: 345.50, rating: 4.8, franchise: 2500, features: ['Freie Arztwahl', 'Telemedizin first'], url: 'https://www.sanitas.com/de/privatkunden.html' },
+    { id: 2, name: 'SWICA', model: 'Favorit', price: 362.20, rating: 4.9, franchise: 2500, features: ['Apotheken-Rabatt', 'Sport-Beitrag'], url: 'https://www.swica.ch/de/private' },
+    { id: 3, name: 'CSS', model: 'Standard', price: 339.80, rating: 4.6, franchise: 2500, features: ['Digital Health App'], url: 'https://www.css.ch/de/privatkunden.html' },
+    { id: 4, name: 'Helsana', model: 'BeneFit', price: 351.00, rating: 4.7, franchise: 1500, features: ['Bonusprogramm'], url: 'https://www.helsana.ch/de/private' },
+    { id: 5, name: 'Assura', model: 'Pharma', price: 298.50, rating: 4.2, franchise: 2500, features: ['Günstigste Prämie', 'Apothekenbindung'], url: 'https://www.assura.ch/de' },
+    { id: 6, name: 'Groupe Mutuel', model: 'PrimaTel', price: 312.40, rating: 4.4, franchise: 2500, features: ['Telemedizin'], url: 'https://www.groupemutuel.ch/de/privatkunden.html' },
 ];
 
 const HealthInsurance = () => {
@@ -156,9 +156,9 @@ const HealthInsurance = () => {
                                     {item.price.toFixed(2)}
                                 </div>
                                 <div className="text-xs text-slate-500 mb-2">CHF / Monat</div>
-                                <button className="w-full text-sm font-semibold text-slate-600 border border-slate-200 bg-slate-50 py-2 rounded-lg hover:bg-slate-100 transition-colors">
-                                    Details
-                                </button>
+                                <a href={item.url} target="_blank" rel="noopener noreferrer" className="block w-full text-center text-sm font-bold text-slate-700 border border-slate-200 bg-slate-50 py-2 rounded-lg hover:bg-slate-100 transition-colors">
+                                    Zu {item.name}
+                                </a>
                             </div>
                         </motion.div>
                     ))
