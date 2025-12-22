@@ -1,30 +1,35 @@
 import React from 'react';
-import { Shield, CheckCircle, Smartphone, Lock, AlertCircle, ArrowRight } from 'lucide-react';
+import { Shield, CheckCircle, Smartphone, Lock, AlertCircle, ArrowRight, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import AdUnit from '../components/AdUnit';
 
-const FeatureCard = ({ icon: Icon, title, desc, link, colorClass }) => (
-    <Link to={link} className="block group">
+const FeatureCard = ({ icon: Icon, title, desc, link, delay }) => (
+    <Link to={link} className="block group h-full">
         <motion.div
-            whileHover={{ y: -5 }}
-            className="h-full bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition-all relative overflow-hidden"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: delay }}
+            className="glass-card h-full p-8 relative overflow-hidden group-hover:bg-white transition-all duration-300 group-hover:-translate-y-1"
         >
-            <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${colorClass} opacity-10 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110`} />
+            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Icon size={120} className="text-primary" />
+            </div>
 
-            <div className="relative z-10">
-                <div className={`w-14 h-14 rounded-xl ${colorClass} bg-opacity-10 flex items-center justify-center mb-6`}>
-                    <Icon className={`w-7 h-7 ${colorClass.replace('bg-', 'text-')}`} />
+            <div className="relative z-10 flex flex-col h-full">
+                <div className="w-14 h-14 rounded-2xl bg-red-50 text-primary flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                    <Icon size={28} />
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-red-600 transition-colors">
+                <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">
                     {title}
                 </h3>
-                <p className="text-slate-600 leading-relaxed mb-6">
+
+                <p className="text-slate-600 leading-relaxed text-sm mb-8 flex-grow">
                     {desc}
                 </p>
 
-                <div className="flex items-center text-sm font-semibold text-slate-900 group-hover:translate-x-1 transition-transform">
+                <div className="flex items-center text-sm font-bold text-primary group-hover:gap-2 transition-all">
                     Jetzt starten <ArrowRight size={16} className="ml-1" />
                 </div>
             </div>
@@ -34,100 +39,128 @@ const FeatureCard = ({ icon: Icon, title, desc, link, colorClass }) => (
 
 const Home = () => {
     return (
-        <div className="space-y-20">
+        <div className="space-y-24 pb-20">
             {/* Hero Section */}
-            <section className="relative text-center max-w-4xl mx-auto pt-10 pb-6">
+            <section className="relative text-center max-w-5xl mx-auto pt-16 md:pt-24 px-4">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.8 }}
                 >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-semibold uppercase tracking-wide mb-6">
-                        <Shield size={12} /> 100% Unabhängig
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-100 shadow-sm text-slate-600 text-xs font-bold uppercase tracking-wider mb-8">
+                        <Shield size={14} className="text-primary" />
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-slate-600">
+                            100% Unabhängig & Werbefrei-finanziert
+                        </span>
                     </div>
-                    <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight">
-                        Transparenz für <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800">
-                            die ganze Schweiz.
+
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-slate-900 mb-8 tracking-tight leading-tight">
+                        Schweizer Finanzen. <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D80000] to-[#b30000]">
+                            Einfach & Fair.
                         </span>
                     </h1>
-                    <p className="text-xl text-slate-500 mb-10 leading-relaxed max-w-2xl mx-auto">
-                        Vergleichen Sie Krankenkassen und Kredite ohne versteckte Provisionen.
-                        Nutzen Sie kostenlose Vorlagen für Kündigungen und Vorsorge.
-                        <br className="hidden md:block" />
-                        <strong className="text-slate-900">Einfach, sicher und zu 100% in Ihrem Interesse.</strong>
+
+                    <p className="text-xl md:text-2xl text-slate-500 mb-12 leading-relaxed max-w-2xl mx-auto font-medium">
+                        Der moderne Rechner für Arbeitslosengeld, Krankenkassen & Kredite.
+                        Ohne Makler. Ohne Gebühren.
                     </p>
+
+                    <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
+                        <Link to="/arbeitslosengeld" className="btn-primary flex items-center gap-2 px-8 py-4 text-lg w-full md:w-auto justify-center">
+                            Arbeitslosengeld berechnen <ChevronRight size={20} />
+                        </Link>
+                        <Link to="/krankenkasse" className="px-8 py-4 rounded-xl font-bold text-slate-700 hover:bg-slate-50 transition-colors w-full md:w-auto">
+                            Krankenkassen vergleichen
+                        </Link>
+                    </div>
                 </motion.div>
             </section>
 
             {/* AD PLACEMENT: Below Hero */}
-            <AdUnit slot="homepage-top" />
+            <div className="max-w-4xl mx-auto">
+                <AdUnit slot="homepage-top" />
+            </div>
 
-            {/* Main Grid */}
-            <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <FeatureCard
-                    icon={Smartphone} // Placeholder icon
-                    title="Arbeitslosengeld"
-                    desc="Wieviel Taggeld steht Ihnen zu? Berechnen Sie Ihren Anspruch sofort."
-                    link="/arbeitslosengeld"
-                    colorClass="bg-slate-800"
-                />
+            {/* Main Features Grid */}
+            <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 px-4">
                 <FeatureCard
                     icon={Smartphone}
-                    title="Krankenkassenvergleich"
-                    desc="Finden Sie die wirklich günstigste Prämie für 2025. Ohne Makler-Tricks."
+                    title="Arbeitslosengeld Rechner"
+                    desc="Berechnen Sie sofort Ihren Taggeld-Anspruch nach aktuellen Schweizer Gesetzen für 2025."
+                    link="/arbeitslosengeld"
+                    delay={0.1}
+                />
+                <FeatureCard
+                    icon={Shield}
+                    title="Krankenkassen 2025"
+                    desc="Vergleichen Sie alle Prämien neutral. Finden Sie das echte Sparpotenzial ohne Verkaufsdruck."
                     link="/krankenkasse"
-                    colorClass="bg-red-600"
-                />
-                <FeatureCard
-                    icon={Lock}
-                    title="Kündigungs-Vorlagen"
-                    desc="Rechtssichere Kündigungsschreiben (Wohnung, Abo, Arbeit) in 2 Minuten als PDF."
-                    link="/kuendigen"
-                    colorClass="bg-blue-600"
-                />
-                <FeatureCard
-                    icon={CheckCircle}
-                    title="Organ & Vorsorge"
-                    desc="Widerspruchslösung 2027? Erstellen Sie Ihren Willen jetzt rechtssicher."
-                    link="/organspende"
-                    colorClass="bg-emerald-600"
+                    delay={0.2}
                 />
                 <FeatureCard
                     icon={AlertCircle}
-                    title="Privatkredit-Check"
-                    desc="Berechnen Sie echte Gesamtkosten. Neutraler Vergleich der Zinsen."
+                    title="Kredit-Check"
+                    desc="Transparenter Vergleich von Privatkrediten. Sehen Sie die echten Gesamtkosten."
                     link="/kredit"
-                    colorClass="bg-purple-600"
+                    delay={0.3}
                 />
-                {/* Placeholder for more tools */}
-                <div className="glass-card rounded-2xl p-8 border border-dashed border-slate-300 flex flex-col items-center justify-center text-center text-slate-400">
-                    <p className="font-medium">Weitere Tools folgen</p>
-                    <p className="text-sm">Haben Sie Ideen?</p>
+                <FeatureCard
+                    icon={Lock}
+                    title="Kündigungs-Generator"
+                    desc="Erstellen Sie rechtssichere Kündigungsbriefe als PDF. Für Wohnung, Arbeit & Versicherungen."
+                    link="/kuendigen"
+                    delay={0.4}
+                />
+                <FeatureCard
+                    icon={CheckCircle}
+                    title="Organspende Ausweis"
+                    desc="Alles zur neuen Widerspruchslösung. Erstellen Sie Ihren Willen rechtssicher und digital."
+                    link="/organspende"
+                    delay={0.5}
+                />
+                {/* Coming Soon Card */}
+                <div className="h-full rounded-2xl p-8 border-2 border-dashed border-slate-200 flex flex-col items-center justify-center text-center text-slate-400 min-h-[300px]">
+                    <p className="font-bold mb-2">Mehr Tools in Arbeit</p>
+                    <p className="text-sm">Vorsorge, Steuern & mehr.</p>
                 </div>
             </section>
 
-            {/* AD PLACEMENT: Middle */}
-            <AdUnit slot="homepage-middle" />
+            {/* Middle Ad */}
+            <div className="max-w-4xl mx-auto">
+                <AdUnit slot="homepage-middle" />
+            </div>
 
-            {/* Trust Section */}
-            <section className="bg-white rounded-3xl p-10 md:p-16 border border-slate-100 shadow-sm text-center">
-                <h2 className="text-3xl font-bold mb-12">Warum SwissCheck?</h2>
+            {/* Values Section */}
+            <section className="glass-card p-12 md:p-16 text-center max-w-6xl mx-auto mx-4">
+                <h2 className="text-3xl font-bold mb-16 text-slate-900">Warum SwissCheck anders ist.</h2>
                 <div className="grid md:grid-cols-3 gap-12">
                     <div>
-                        <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">0%</div>
-                        <h3 className="text-lg font-bold mb-2">Keine Provisionen</h3>
-                        <p className="text-slate-600 text-sm">Wir erhalten kein Geld von Versicherungen oder Banken für Top-Platzierungen. Wir finanzieren uns über Werbung.</p>
+                        <div className="w-20 h-20 bg-red-50 text-primary rounded-3xl flex items-center justify-center mx-auto mb-6 text-3xl font-bold shadow-sm">
+                            <Shield size={32} />
+                        </div>
+                        <h3 className="text-lg font-bold mb-3">Keine Provisionen</h3>
+                        <p className="text-slate-500 leading-relaxed">
+                            Wir verkaufen keine Versicherungen. Wir zeigen Ihnen die Daten neutral und verdienen nur an der Werbung hier.
+                        </p>
                     </div>
                     <div>
-                        <div className="w-16 h-16 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">100%</div>
-                        <h3 className="text-lg font-bold mb-2">Datenschutz</h3>
-                        <p className="text-slate-600 text-sm">Ihre Daten bleiben auf Ihrem Gerät. Wir speichern nichts, was Sie eingeben.</p>
+                        <div className="w-20 h-20 bg-slate-50 text-slate-800 rounded-3xl flex items-center justify-center mx-auto mb-6 text-3xl font-bold shadow-sm">
+                            <Lock size={32} />
+                        </div>
+                        <h3 className="text-lg font-bold mb-3">100% Anonym</h3>
+                        <p className="text-slate-500 leading-relaxed">
+                            Ihre Daten verlassen niemals Ihren Browser. Wir speichern nichts. Keine Cookies, kein Tracking.
+                        </p>
                     </div>
                     <div>
-                        <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">Free</div>
-                        <h3 className="text-lg font-bold mb-2">Komplett Gratis</h3>
-                        <p className="text-slate-600 text-sm">Ein Projekt für die Allgemeinheit.</p>
+                        <div className="w-20 h-20 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-6 text-3xl font-bold shadow-sm">
+                            <CheckCircle size={32} />
+                        </div>
+                        <h3 className="text-lg font-bold mb-3">Kostenlos für alle</h3>
+                        <p className="text-slate-500 leading-relaxed">
+                            Dieses Projekt ist ein Service für die Schweizer Bevölkerung. Zugang zu Finanzwissen für jeden.
+                        </p>
                     </div>
                 </div>
             </section>
