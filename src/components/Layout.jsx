@@ -1,27 +1,57 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShieldCheck, Menu, X, Heart, FileText, Percent, Activity } from 'lucide-react';
+import { ShieldCheck, Menu, X, ChevronDown, Heart, FileText, Percent, Activity, Umbrella, MapPin, Briefcase, Calculator } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState(null);
     const location = useLocation();
 
-    const navLinks = [
-        { name: 'Arbeitslosengeld', path: '/arbeitslosengeld', icon: Activity },
-        { name: 'Krankenkasse', path: '/krankenkasse', icon: Heart },
-        { name: 'Kredit', path: '/kredit', icon: Percent },
-        { name: 'Kündigen', path: '/kuendigen', icon: FileText },
+    // Menu Structure
+    const menuGroups = [
+        {
+            title: "Versicherungen",
+            items: [
+                { name: 'Krankenkasse', path: '/krankenkasse', icon: Heart },
+                { name: 'Lebensversicherung', path: '/lebensversicherung', icon: Umbrella },
+            ]
+        },
+        {
+            title: "Finanzen",
+            items: [
+                { name: 'Kredit-Vergleich', path: '/kredit', icon: Percent },
+                { name: 'Arbeitslosengeld', path: '/arbeitslosengeld', icon: Calculator },
+            ]
+        },
+        {
+            title: "Umzug Schweiz",
+            path: '/umzug-schweiz', // Direct link option
+            items: [
+                { name: 'Umzug-Guide', path: '/umzug-schweiz', icon: MapPin },
+            ]
+        },
+        {
+            title: "Vorlagen & Recht",
+            items: [
+                { name: 'Kündigungsvorlagen', path: '/kuendigen', icon: FileText },
+                { name: 'Organspende Ausweis', path: '/organspende', icon: Activity },
+                { name: 'Kündigungs-Wecker', path: '/reminder', icon: Activity },
+            ]
+        }
     ];
 
     const isActive = (path) => location.pathname === path;
 
+    const handleMouseEnter = (title) => setActiveDropdown(title);
+    const handleMouseLeave = () => setActiveDropdown(null);
+
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-white/20 shadow-sm">
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-white/20 shadow-sm">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
-                    <Link to="/" className="flex items-center gap-2 group">
+                    <Link to="/" className="flex items-center gap-2 group z-50 relative">
                         <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform" style={{ backgroundColor: 'var(--swiss-red)' }}>
                             <ShieldCheck size={24} strokeWidth={2.5} />
                         </div>
@@ -32,30 +62,56 @@ const Navbar = () => {
                     </Link>
 
                     {/* Desktop Nav */}
-                    <div className="hidden md:flex items-center gap-1">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.path}
-                                to={link.path}
-                                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2
-                  ${isActive(link.path)
-                                        ? 'text-red-700 bg-red-50'
-                                        : 'text-slate-600 hover:text-red-600 hover:bg-slate-50'
-                                    }`}
+                    <div className="hidden lg:flex items-center gap-6">
+                        {menuGroups.map((group) => (
+                            <div
+                                key={group.title}
+                                className="relative py-6 group"
+                                onMouseEnter={() => handleMouseEnter(group.title)}
+                                onMouseLeave={handleMouseLeave}
                             >
-                                <link.icon size={16} className={isActive(link.path) ? 'text-red-600' : 'text-slate-400'} />
-                                {link.name}
-                            </Link>
+                                <button className="flex items-center gap-1 text-sm font-bold text-slate-700 hover:text-red-600 transition-colors">
+                                    {group.title} <ChevronDown size={14} className={`transition-transform duration-200 ${activeDropdown === group.title ? 'rotate-180' : ''}`} />
+                                </button>
+
+                                {/* Dropdown */}
+                                <AnimatePresence>
+                                    {activeDropdown === group.title && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 10 }}
+                                            transition={{ duration: 0.15 }}
+                                            className="absolute top-full -left-4 w-64 bg-white rounded-xl shadow-xl border border-slate-100 p-2 overflow-hidden"
+                                        >
+                                            <div className="flex flex-col gap-1">
+                                                {group.items.map((item) => (
+                                                    <Link
+                                                        key={item.path}
+                                                        to={item.path}
+                                                        className={`px-4 py-3 rounded-lg text-sm font-medium flex items-center gap-3 transition-colors ${isActive(item.path) ? 'bg-red-50 text-red-700' : 'hover:bg-slate-50 text-slate-600'}`}
+                                                    >
+                                                        <div className={`p-1.5 rounded-md ${isActive(item.path) ? 'bg-white text-red-600 shadow-sm' : 'bg-slate-100 text-slate-500'}`}>
+                                                            <item.icon size={16} />
+                                                        </div>
+                                                        {item.name}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
                         ))}
                     </div>
 
                     {/* Mobile Toggle */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 lg:hidden">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+                            className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
                         >
-                            {isOpen ? <X /> : <Menu />}
+                            {isOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>
                     </div>
                 </div>
@@ -68,20 +124,26 @@ const Navbar = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-white border-b border-slate-100 overflow-hidden"
+                        className="lg:hidden bg-white border-b border-slate-100 overflow-hidden"
                     >
-                        <div className="container mx-auto px-4 py-4 flex flex-col gap-2">
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.path}
-                                    to={link.path}
-                                    onClick={() => setIsOpen(false)}
-                                    className={`p-3 rounded-lg flex items-center gap-3 ${isActive(link.path) ? 'bg-red-50 text-red-700' : 'text-slate-600'
-                                        }`}
-                                >
-                                    <link.icon size={20} />
-                                    {link.name}
-                                </Link>
+                        <div className="container mx-auto px-4 py-6 flex flex-col gap-6 max-h-[80vh] overflow-y-auto">
+                            {menuGroups.map((group) => (
+                                <div key={group.title}>
+                                    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">{group.title}</h3>
+                                    <div className="flex flex-col gap-2 pl-2">
+                                        {group.items.map((item) => (
+                                            <Link
+                                                key={item.path}
+                                                to={item.path}
+                                                onClick={() => setIsOpen(false)}
+                                                className={`p-3 rounded-lg flex items-center gap-3 ${isActive(item.path) ? 'bg-red-50 text-red-700' : 'text-slate-600 active:bg-slate-50'}`}
+                                            >
+                                                <item.icon size={20} />
+                                                <span className="font-medium">{item.name}</span>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
                             ))}
                         </div>
                     </motion.div>
@@ -108,25 +170,26 @@ const Footer = () => (
                 </div>
 
                 <div>
-                    <h4 className="text-white font-semibold mb-4">Vergleiche</h4>
+                    <h4 className="text-white font-semibold mb-4">Finanzen & Vers.</h4>
                     <ul className="space-y-2 text-sm">
                         <li><Link to="/krankenkasse" className="hover:text-white transition-colors">Krankenkasse</Link></li>
                         <li><Link to="/kredit" className="hover:text-white transition-colors">Privatkredit</Link></li>
+                        <li><Link to="/lebensversicherung" className="hover:text-white transition-colors">Lebensversicherung</Link></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 className="text-white font-semibold mb-4">Tools</h4>
+                    <h4 className="text-white font-semibold mb-4">Service</h4>
                     <ul className="space-y-2 text-sm">
-                        <li><Link to="/kuendigen" className="hover:text-white transition-colors">Mietvertrag kündigen</Link></li>
-                        <li><Link to="/organspende" className="hover:text-white transition-colors">2027 Organspende</Link></li>
-                        <li><Link to="/reminder" className="hover:text-white transition-colors">Erinnerungs-Service</Link></li>
+                        <li><Link to="/arbeitslosengeld" className="hover:text-white transition-colors">Arbeitslosengeld</Link></li>
+                        <li><Link to="/umzug-schweiz" className="hover:text-white transition-colors">Umzug Schweiz</Link></li>
                     </ul>
                 </div>
 
                 <div>
                     <h4 className="text-white font-semibold mb-4">Rechtliches</h4>
                     <ul className="space-y-2 text-sm">
+                        <li><Link to="/kuendigen" className="hover:text-white transition-colors">Vorlagen</Link></li>
                         <li><Link to="/impressum" className="hover:text-white transition-colors">Impressum</Link></li>
                         <li><Link to="/privacy" className="hover:text-white transition-colors">Datenschutz</Link></li>
                     </ul>

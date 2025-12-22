@@ -9,6 +9,8 @@ import HealthInsurance from './pages/HealthInsurance';
 import Credit from './pages/Credit';
 import Reminder from './pages/Reminder';
 import Unemployment from './pages/Unemployment';
+import LifeInsurance from './pages/LifeInsurance';
+import Relocation from './pages/Relocation';
 
 // Placeholder Components
 const Placeholder = ({ title }) => (
@@ -25,7 +27,9 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/arbeitslosengeld" element={<Unemployment />} />
         <Route path="/krankenkasse" element={<HealthInsurance />} />
+        <Route path="/lebensversicherung" element={<LifeInsurance />} />
         <Route path="/kredit" element={<Credit />} />
+        <Route path="/umzug-schweiz" element={<Relocation />} />
         <Route path="/kuendigen" element={<Termination />} />
         <Route path="/organspende" element={<OrganDonation />} />
         <Route path="/reminder" element={<Reminder />} />
