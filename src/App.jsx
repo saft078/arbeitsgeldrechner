@@ -13,7 +13,7 @@ import Pillar3a from './pages/Pillar3a';
 import Mortgage from './pages/Mortgage';
 import CreditCardPage from './pages/CreditCard';
 import CarInsurance from './pages/CarInsurance';
-import CarInsurance from './pages/CarInsurance';
+
 import LifeInsurance from './pages/LifeInsurance';
 import Trading from './pages/Trading';
 import Mobile from './pages/Mobile';
