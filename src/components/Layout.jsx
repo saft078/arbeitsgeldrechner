@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShieldCheck, Menu, X, ChevronDown, Heart, FileText, Percent, Activity, Umbrella, MapPin, Briefcase, Calculator, Home, CreditCard } from 'lucide-react';
+import { ShieldCheck, Menu, X, ChevronDown, Heart, FileText, Percent, Activity, Umbrella, MapPin, Briefcase, Calculator, Home, CreditCard, Car } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
@@ -14,7 +14,8 @@ const Navbar = () => {
             title: "Versicherungen",
             items: [
                 { name: 'Krankenkasse', path: '/krankenkasse', icon: Heart },
-                { name: 'Lebensversicherung', path: '/lebensversicherung', icon: Umbrella },
+                { name: 'Autoversicherung', path: '/autoversicherung', icon: Car },
+                { name: 'Lebensversicherung', path: '/leben', icon: Umbrella },
             ]
         },
         {
