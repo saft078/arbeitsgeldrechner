@@ -34,6 +34,26 @@ const Unemployment = () => {
 
     return (
         <div className="max-w-4xl mx-auto space-y-12">
+            <SEO
+                title="Arbeitslosengeld Rechner 2025"
+                description="Wie viel Arbeitslosengeld bekomme ich? Neutraler Rechner für die Schweiz. Taggeld, Rahmenfrist, Kinderzulagen."
+                keywords="Arbeitslosengeld berechnen, Arbeitslosengeld Rechner, Taggeld, RAV, ALV Schweiz"
+                schema={{
+                    "@context": "https://schema.org",
+                    "@type": "FinanceApplication",
+                    "name": "Arbeitslosengeld Rechner Schweiz",
+                    "url": "https://arbeitsgeldrechner.ch/arbeitslosengeld",
+                    "applicationCategory": "FinanceApplication",
+                    "operatingSystem": "Web",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "CHF"
+                    },
+                    "featureList": "Berechnung Taggeld, Kinderzulagen, versicherter Lohn"
+                }}
+            />
+
             <div className="text-center">
                 <h1 className="text-4xl font-bold mb-4">Arbeitslosengeld Rechner</h1>
                 <p className="text-slate-500">Berechnen Sie Ihr voraussichtliches Taggeld (ALE) in der Schweiz.</p>
