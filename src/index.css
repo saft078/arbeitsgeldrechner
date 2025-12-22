@@ -15,13 +15,31 @@ body {
 }
 
 .glass-card {
-  @apply bg-white/80 backdrop-blur-md rounded-xl shadow-lg border border-gray-100;
+  background-color: rgb(255 255 255 / 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  border: 1px solid rgb(243 244 246);
 }
 
 .btn-primary {
-  @apply bg-[#D80000] hover:bg-[#b30000] text-white font-bold py-3 px-6 rounded-lg transition-colors shadow-lg shadow-red-500/20;
+  background-color: #D80000;
+  color: white;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+  box-shadow: 0 10px 15px -3px rgb(220 38 38 / 0.2);
+}
+
+.btn-primary:hover {
+  background-color: #b30000;
 }
 
 .text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#D80000] to-[#b30000];
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #D80000, #b30000);
 }
