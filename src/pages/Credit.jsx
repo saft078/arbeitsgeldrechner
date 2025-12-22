@@ -164,8 +164,8 @@ const Credit = () => {
                                     </div>
                                     <div className="text-xs font-medium text-slate-400 uppercase tracking-wider mb-3">CHF / Monat</div>
 
-                                    <button className="w-full md:w-auto btn-primary py-3 px-6 text-sm flex items-center justify-center gap-2 group-hover:scale-105 transition-transform">
-                                        Zum Angebot <ArrowRight size={16} />
+                                    <button className="w-full md:w-auto py-3 px-6 text-sm flex items-center justify-center gap-2 font-bold text-slate-600 bg-slate-50 rounded-lg hover:bg-slate-100 transition-all border border-slate-200">
+                                        Tarifdetails <ArrowRight size={16} />
                                     </button>
                                 </div>
                             </div>
