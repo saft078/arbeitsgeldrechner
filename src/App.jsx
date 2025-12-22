@@ -9,6 +9,9 @@ import HealthInsurance from './pages/HealthInsurance';
 import Credit from './pages/Credit';
 import Reminder from './pages/Reminder';
 import Unemployment from './pages/Unemployment';
+import Pillar3a from './pages/Pillar3a';
+import Mortgage from './pages/Mortgage';
+import CreditCardPage from './pages/CreditCard';
 import LifeInsurance from './pages/LifeInsurance';
 import Relocation from './pages/Relocation';
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShieldCheck, Menu, X, ChevronDown, Heart, FileText, Percent, Activity, Umbrella, MapPin, Briefcase, Calculator } from 'lucide-react';
+import { ShieldCheck, Menu, X, ChevronDown, Heart, FileText, Percent, Activity, Umbrella, MapPin, Briefcase, Calculator, Home, CreditCard } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
@@ -21,6 +21,9 @@ const Navbar = () => {
             title: "Finanzen",
             items: [
                 { name: 'Kredit-Vergleich', path: '/kredit', icon: Percent },
+                { name: 'Hypotheken', path: '/hypothek', icon: Home },
+                { name: 'Säule 3a', path: '/saeule-3a', icon: Briefcase },
+                { name: 'Kreditkarten', path: '/kreditkarte', icon: CreditCard },
                 { name: 'Arbeitslosengeld', path: '/arbeitslosengeld', icon: Calculator },
             ]
         },
