@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Calculator, HelpCircle, Info } from 'lucide-react';
 import AdUnit from '../components/AdUnit';
+import SEO from '../components/SEO';
 
 const Unemployment = () => {
     const [salary, setSalary] = useState(6500);

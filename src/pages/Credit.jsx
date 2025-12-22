@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Calculator, CheckCircle2, ArrowRight, Percent, ShieldCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import AdUnit from '../components/AdUnit';
+import SEO from '../components/SEO';
 
 const Credit = () => {
     const [amount, setAmount] = useState(20000);
@@ -26,6 +27,11 @@ const Credit = () => {
 
     return (
         <div className="max-w-7xl mx-auto px-4 py-8">
+            <SEO
+                title="Privatkredit Vergleich 2025"
+                description="Aktuelle Kreditzinsen Schweiz. Vergleichen Sie Bank-now, Cembra, Migros Bank und mehr. Günstige Privatkredite berechnen."
+                keywords="Privatkredit, Kreditrechner, Zinsen Schweiz, Kredit aufnehmen, Bank-now, Cembra"
+            />
             <div className="text-center mb-16 space-y-4">
                 <span className="inline-block py-1 px-3 rounded-full bg-red-50 text-red-600 text-xs font-bold uppercase tracking-widest border border-red-100">
                     Kreditvergleich 2025

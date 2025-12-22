@@ -1,111 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  /* Premium Fintech Palette */
-  --swiss-red: #E60000;
-  --swiss-red-light: #FF2424;
-  --swiss-red-dark: #B00000;
-
-  --primary-navy: #0F172A;
-  /* Deep Blue/Black */
-  --secondary-slate: #334155;
-
-  --bg-gradient-start: #F8FAFC;
-  --bg-gradient-end: #F1F5F9;
-
-  /* Glassmorphism Tokens */
-  --glass-bg: rgba(255, 255, 255, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.6);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-
-  --radius-lg: 24px;
-  --radius-md: 16px;
-
-  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --color-primary: #D80000;
 }
 
 body {
-  font-family: var(--font-body);
-  background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
-  color: var(--primary-navy);
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-color: #ffffff;
+  color: #0F172A;
 }
 
-/* Premium Component Utilities */
-.glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--glass-shadow);
-}
-
-.input-modern {
-  width: 100%;
-  padding: 1rem 1.25rem;
-  background: white;
-  border: 1px solid #E2E8F0;
-  border-radius: var(--radius-md);
-  color: var(--primary-navy);
-  font-weight: 600;
-  outline: none;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-}
-
-.input-modern:focus {
-  border-color: var(--swiss-red);
-  box-shadow: 0 0 0 4px rgba(230, 0, 0, 0.1);
-}
-
-/* Custom Range Slider */
-input[type=range] {
-  -webkit-appearance: none;
-  background: transparent;
-}
-
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 24px;
-  width: 24px;
-  border-radius: 50%;
-  background: var(--swiss-red);
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(230, 0, 0, 0.4);
-  margin-top: -10px;
-  transition: transform 0.1s;
-}
-
-input[type=range]::-webkit-slider-thumb:hover {
-  transform: scale(1.1);
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 4px;
-  background: #E2E8F0;
-  border-radius: 2px;
+.glass-card {
+  @apply bg-white/80 backdrop-blur-md rounded-xl shadow-lg border border-gray-100;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--swiss-red) 0%, var(--swiss-red-dark) 100%);
-  color: white;
-  font-weight: 700;
-  border-radius: var(--radius-md);
-  padding: 1rem 2rem;
-  box-shadow: 0 10px 20px -5px rgba(230, 0, 0, 0.3);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 15px 30px -5px rgba(230, 0, 0, 0.4);
+  @apply bg-[#D80000] hover:bg-[#b30000] text-white font-bold py-3 px-6 rounded-lg transition-colors shadow-lg shadow-red-500/20;
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--swiss-red) 0%, var(--swiss-red-dark) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#D80000] to-[#b30000];
 }

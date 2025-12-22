@@ -3,6 +3,7 @@ import { Search, Filter, Check, Star, Info } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 import AdUnit from '../components/AdUnit';
+import SEO from '../components/SEO';
 
 // MOCK DATA - Realistic 2025 samples
 const MOCK_INSURERS = [
@@ -37,6 +38,12 @@ const HealthInsurance = () => {
 
     return (
         <div className="space-y-8">
+            <SEO
+                title="Krankenkassen Vergleich 2025"
+                description="Sparen Sie Prämien! Neutraler Krankenkassenvergleich Schweiz 2025. Alle Kassen, alle Modelle (Hausarzt, Telmed). Kostenlos."
+                keywords="Krankenkasse, Prämien 2025, Krankenkassenvergleich, Billigste Krankenkasse, Assura, CSS, Swica"
+            />
+
             <div className="text-center mb-8">
                 <h1 className="text-3xl font-bold mb-2">Krankenkassenvergleich 2025</h1>
                 <p className="text-slate-500">100% Neutral. Sortiert nach echtem Preis.</p>
@@ -85,6 +92,7 @@ const HealthInsurance = () => {
                     </button>
                 </div>
             </div>
+
             <div className="grid grid-cols-2 gap-4 mt-6">
                 <div className="flex items-center">
                     <label className="flex items-center gap-3 cursor-pointer group">
@@ -160,7 +168,7 @@ const HealthInsurance = () => {
             <div className="text-center text-xs text-slate-400 pt-8">
                 <p>Hinweis: Dies sind Beispielwerte für Demonstrationszwecke.</p>
             </div>
-        </div >
+        </div>
     );
 };
 
