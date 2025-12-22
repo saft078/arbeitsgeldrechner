@@ -19,6 +19,8 @@ import Trading from './pages/Trading';
 import Mobile from './pages/Mobile';
 import PetInsurance from './pages/PetInsurance';
 import Relocation from './pages/Relocation';
+import Impressum from './pages/Impressum';
+import Privacy from './pages/Privacy';
 
 // Placeholder Components
 const Placeholder = ({ title }) => (
@@ -48,6 +50,8 @@ const App = () => {
         <Route path="/kuendigen" element={<Termination />} />
         <Route path="/organspende" element={<OrganDonation />} />
         <Route path="/reminder" element={<Reminder />} />
+        <Route path="/impressum" element={<Impressum />} />
+        <Route path="/privacy" element={<Privacy />} />
         <Route path="*" element={<Placeholder title="404 - Seite nicht gefunden" />} />
       </Routes>
     </Layout>
