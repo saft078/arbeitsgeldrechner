@@ -31,8 +31,12 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/arbeitslosengeld" element={<Unemployment />} />
         <Route path="/krankenkasse" element={<HealthInsurance />} />
+        <Route path="/autoversicherung" element={<CarInsurance />} />
         <Route path="/lebensversicherung" element={<LifeInsurance />} />
         <Route path="/kredit" element={<Credit />} />
+        <Route path="/saeule-3a" element={<Pillar3a />} />
+        <Route path="/hypothek" element={<Mortgage />} />
+        <Route path="/kreditkarte" element={<CreditCardPage />} />
         <Route path="/umzug-schweiz" element={<Relocation />} />
         <Route path="/kuendigen" element={<Termination />} />
         <Route path="/organspende" element={<OrganDonation />} />
