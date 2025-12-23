@@ -49,10 +49,10 @@ const Credit = () => {
             <AdUnit slot="credit-top" label="Werbung" />
 
             {/* Split Layout: Calculator Left, Results Right */}
-            <div className="grid lg:grid-cols-12 gap-8 items-start">
+            <div className="grid lg:grid-cols-12 gap-12 items-start">
 
                 {/* LEFT: Calculator Input */}
-                <div className="lg:col-span-5 sticky top-24">
+                <div className="lg:col-span-4 xl:col-span-4 sticky top-24">
                     <div className="glass-panel p-8 bg-white/80">
                         <div className="flex items-center gap-3 mb-8">
                             <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
@@ -127,7 +127,7 @@ const Credit = () => {
                 </div>
 
                 {/* RIGHT: Offer Cards */}
-                <div className="lg:col-span-7 space-y-5">
+                <div className="lg:col-span-8 xl:col-span-8 space-y-6">
                     {offers.map((bank, idx) => (
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
