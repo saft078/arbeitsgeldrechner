@@ -52,73 +52,72 @@ const HealthInsurance = () => {
             <AdUnit slot="insurance-top" label="Anzeige" />
 
             {/* Calculator Bar */}
-            <div className="glass-card p-6 rounded-2xl bg-white shadow-lg sticky top-24 z-20">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-end">
-                    <div>
-                        <label className="text-xs font-bold text-slate-500 uppercase">Postleitzahl</label>
-                        <input
-                            type="text"
-                            className="w-full border-b-2 border-slate-200 focus:border-red-600 bg-transparent py-2 outline-none font-medium"
-                            placeholder="PLZ"
-                            value={filters.plz}
-                            onChange={e => setFilters({ ...filters, plz: e.target.value })}
-                        />
-                    </div>
-                    <div>
-                        <label className="text-xs font-bold text-slate-500 uppercase">Jahrgang</label>
-                        <input
-                            type="number"
-                            className="w-full border-b-2 border-slate-200 focus:border-red-600 bg-transparent py-2 outline-none font-medium"
-                            placeholder="z.B. 1990"
-                        />
-                    </div>
-                    <div>
-                        <label className="text-xs font-bold text-slate-500 uppercase">Franchise</label>
-                        <select
-                            className="w-full border-b-2 border-slate-200 bg-transparent py-2 outline-none font-medium text-slate-900"
-                            value={filters.franchise}
-                            onChange={e => setFilters({ ...filters, franchise: Number(e.target.value) })}
-                        >
-                            <option value={300}>CHF 300.-</option>
-                            <option value={1500}>CHF 1'500.-</option>
-                            <option value={2500}>CHF 2'500.-</option>
-                        </select>
-                    </div>
-                    <button
-                        onClick={handleSearch}
-                        className="btn-primary w-full py-3 rounded-xl flex items-center justify-center gap-2"
-                    >
-                        {loading ? 'Berechne...' : <><Search size={18} /> Vergleichen</>}
-                    </button>
-                </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 mt-6">
-                <div className="flex items-center">
-                    <label className="flex items-center gap-3 cursor-pointer group">
-                        <div className={`w-12 h-7 rounded-full p-1 transition-colors duration-200 ease-in-out flex items-center ${filters.accidentCover ? 'bg-emerald-500' : 'bg-slate-200'}`}>
-                            <div className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-200 ${filters.accidentCover ? 'translate-x-5' : 'translate-x-0'}`} />
+            <div className="max-w-5xl mx-auto">
+                <div className="glass-card p-6 rounded-2xl bg-white shadow-lg sticky top-24 z-20">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-end">
+                        <div>
+                            <label className="text-xs font-bold text-slate-500 uppercase">Postleitzahl</label>
+                            <input
+                                type="text"
+                                className="w-full border-b-2 border-slate-200 focus:border-red-600 bg-transparent py-2 outline-none font-medium"
+                                placeholder="PLZ"
+                                value={filters.plz}
+                                onChange={e => setFilters({ ...filters, plz: e.target.value })}
+                            />
                         </div>
-                        <input
-                            type="checkbox"
-                            className="hidden"
-                            checked={filters.accidentCover}
-                            onChange={e => setFilters({ ...filters, accidentCover: e.target.checked })}
-                        />
-                        <span className="text-sm font-bold text-slate-600 group-hover:text-slate-900 select-none">Mit Unfalldeckung</span>
-                    </label>
+                        <div>
+                            <label className="text-xs font-bold text-slate-500 uppercase">Jahrgang</label>
+                            <input
+                                type="number"
+                                className="w-full border-b-2 border-slate-200 focus:border-red-600 bg-transparent py-2 outline-none font-medium"
+                                placeholder="z.B. 1990"
+                            />
+                        </div>
+                        <div>
+                            <label className="text-xs font-bold text-slate-500 uppercase">Franchise</label>
+                            <select
+                                className="w-full border-b-2 border-slate-200 bg-transparent py-2 outline-none font-medium text-slate-900"
+                                value={filters.franchise}
+                                onChange={e => setFilters({ ...filters, franchise: Number(e.target.value) })}
+                            >
+                                <option value={300}>CHF 300.-</option>
+                                <option value={1500}>CHF 1'500.-</option>
+                                <option value={2500}>CHF 2'500.-</option>
+                            </select>
+                        </div>
+                        <button
+                            onClick={handleSearch}
+                            className="btn-primary w-full py-3 rounded-xl flex items-center justify-center gap-2"
+                        >
+                            {loading ? 'Berechne...' : <><Search size={18} /> Vergleichen</>}
+                        </button>
+                    </div>
                 </div>
-                <button
-                    onClick={handleSearch}
-                    className="btn-primary w-full py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-red-200 text-lg"
-                >
-                    {loading ? 'Berechne...' : <><Search size={20} /> Jetzt vergleichen</>}
-                </button>
+
+                <div className="grid grid-cols-2 gap-4 mt-6">
+                    <div className="flex items-center">
+                        <label className="flex items-center gap-3 cursor-pointer group">
+                            <div className={`w-12 h-7 rounded-full p-1 transition-colors duration-200 ease-in-out flex items-center ${filters.accidentCover ? 'bg-emerald-500' : 'bg-slate-200'}`}>
+                                <div className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-200 ${filters.accidentCover ? 'translate-x-5' : 'translate-x-0'}`} />
+                            </div>
+                            <input
+                                type="checkbox"
+                                className="hidden"
+                                checked={filters.accidentCover}
+                                onChange={e => setFilters({ ...filters, accidentCover: e.target.checked })}
+                            />
+                            <span className="text-sm font-bold text-slate-600 group-hover:text-slate-900 select-none">Mit Unfalldeckung</span>
+                        </label>
+                    </div>
+                    <div>
+                        {/* Spacer or additional filter */}
+                    </div>
+                </div>
             </div>
 
 
             {/* Results List */}
-            <div className="space-y-4 max-w-4xl mx-auto">
+            <div className="space-y-4 max-w-5xl mx-auto">
                 {loading ? (
                     <div className="text-center py-20 text-slate-400 animate-pulse">
                         Berechne Prämien für Ihre Region...
