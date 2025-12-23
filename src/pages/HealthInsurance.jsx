@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Search, Filter, Check, Star, Info } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -16,25 +16,8 @@ const MOCK_INSURERS = [
 ];
 
 const HealthInsurance = () => {
-    const [filters, setFilters] = useState({
-        plz: '',
-        franchise: 2500,
-        age: 30,
-        accidentCover: true
-    });
-
-    const [loading, setLoading] = useState(false);
-    const [results, setResults] = useState(MOCK_INSURERS);
-
-    const handleSearch = () => {
-        setLoading(true);
-        // Sort by price (cheapest first) to make the calculator feel real and helpful
-        const sortedResults = [...MOCK_INSURERS].sort((a, b) => a.price - b.price);
-        setTimeout(() => {
-            setResults(sortedResults);
-            setLoading(false);
-        }, 800);
-    };
+    // Sorted by price for display (static data for demonstration)
+    const results = [...MOCK_INSURERS].sort((a, b) => a.price - b.price);
 
     return (
         <div className="pb-20">
@@ -72,68 +55,14 @@ const HealthInsurance = () => {
             <div className="container mx-auto px-6">
                 <AdUnit slot="insurance-top" label="Top Anzeige" />
 
-                {/* Calculator Bar */}
-                <div className="max-w-5xl mx-auto -mt-16 relative z-30 mb-16">
-                    <div className="glass-card p-8 rounded-3xl bg-white shadow-2xl border border-slate-100">
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-end">
-                            <div>
-                                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 block">Postleitzahl</label>
-                                <input
-                                    type="text"
-                                    className="w-full border-b-2 border-slate-100 focus:border-red-600 bg-transparent py-2 outline-none font-semibold text-lg"
-                                    placeholder="z.B. 8001"
-                                    value={filters.plz}
-                                    onChange={e => setFilters({ ...filters, plz: e.target.value })}
-                                />
-                            </div>
-                            <div>
-                                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 block">Jahrgang</label>
-                                <input
-                                    type="number"
-                                    className="w-full border-b-2 border-slate-100 focus:border-red-600 bg-transparent py-2 outline-none font-semibold text-lg"
-                                    placeholder="1995"
-                                />
-                            </div>
-                            <div>
-                                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 block">Franchise</label>
-                                <select
-                                    className="w-full border-b-2 border-slate-100 bg-transparent py-2 outline-none font-semibold text-lg text-slate-900"
-                                    value={filters.franchise}
-                                    onChange={e => setFilters({ ...filters, franchise: Number(e.target.value) })}
-                                >
-                                    <option value={300}>CHF 300.-</option>
-                                    <option value={1500}>CHF 1'500.-</option>
-                                    <option value={2000}>CHF 2'000.-</option>
-                                    <option value={2500}>CHF 2'500.-</option>
-                                </select>
-                            </div>
-                            <button
-                                onClick={handleSearch}
-                                className="bg-red-600 hover:bg-red-700 text-white w-full py-4 rounded-2xl flex items-center justify-center gap-2 font-bold transition-all shadow-lg shadow-red-200"
-                            >
-                                {loading ? 'Suche...' : <><Search size={20} /> Angebote zeigen</>}
-                            </button>
-                        </div>
-
-                        <div className="flex items-center mt-6 pt-6 border-t border-slate-50 gap-8">
-                            <label className="flex items-center gap-3 cursor-pointer group">
-                                <div className={`w-10 h-6 rounded-full p-1 transition-colors duration-200 ease-in-out flex items-center ${filters.accidentCover ? 'bg-emerald-500' : 'bg-slate-200'}`}>
-                                    <div className={`w-4 h-4 bg-white rounded-full shadow-sm transform transition-transform duration-200 ${filters.accidentCover ? 'translate-x-4' : 'translate-x-0'}`} />
-                                </div>
-                                <input
-                                    type="checkbox"
-                                    className="hidden"
-                                    checked={filters.accidentCover}
-                                    onChange={e => setFilters({ ...filters, accidentCover: e.target.checked })}
-                                />
-                                <span className="text-sm font-bold text-slate-600 group-hover:text-slate-900 select-none">Unfalldeckung inkl.</span>
-                            </label>
-
-                            <div className="flex items-center gap-2 text-xs text-slate-400 font-medium">
-                                <Info size={14} />
-                                <span>Alle Daten werden verschlüsselt und nicht gespeichert.</span>
-                            </div>
-                        </div>
+                {/* Info Bar */}
+                <div className="max-w-4xl mx-auto -mt-16 relative z-30 mb-16">
+                    <div className="glass-card p-8 rounded-3xl bg-white shadow-2xl border border-slate-100 text-center">
+                        <h2 className="text-2xl font-bold text-slate-900 mb-3">Prämien vergleichen lohnt sich</h2>
+                        <p className="text-slate-600 mb-6">Die Leistungen der Grundversicherung sind bei allen Kassen identisch - aber die Prämien unterscheiden sich stark. Nutzen Sie den offiziellen Vergleich auf priminfo.ch</p>
+                        <a href="https://www.priminfo.ch" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg shadow-red-200">
+                            <Search size={20} /> Zum Bundesvergleich priminfo.ch
+                        </a>
                     </div>
                 </div>
 
@@ -146,62 +75,55 @@ const HealthInsurance = () => {
                             <span className="text-sm text-slate-500">{results.length} Kassen gefunden</span>
                         </div>
 
-                        {loading ? (
-                            <div className="space-y-4">
-                                {[1, 2, 3].map(i => (
-                                    <div key={i} className="h-32 bg-slate-50 rounded-2xl animate-pulse" />
-                                ))}
-                            </div>
-                        ) : (
-                            results.map((item, index) => (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: index * 0.05 }}
-                                    key={item.id}
-                                    className="bg-white rounded-2xl p-6 border border-slate-100 hover:border-red-100 hover:shadow-xl hover:shadow-slate-200/50 transition-all"
-                                >
-                                    <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                                        <div className="flex-1">
-                                            <div className="flex items-center gap-3 mb-2">
-                                                <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center font-bold text-red-600 border border-slate-100">
-                                                    {item.name[0]}
-                                                </div>
-                                                <div>
-                                                    <h3 className="font-bold text-lg text-slate-900">{item.name}</h3>
-                                                    <span className="text-xs font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded-full uppercase tracking-tighter">{item.model}</span>
-                                                </div>
+                        {results.map((item, index) => (
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.05 }}
+                                key={item.id}
+                                className="bg-white rounded-2xl p-6 border border-slate-100 hover:border-red-100 hover:shadow-xl hover:shadow-slate-200/50 transition-all"
+                            >
+                                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                                    <div className="flex-1">
+                                        <div className="flex items-center gap-3 mb-2">
+                                            <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center font-bold text-red-600 border border-slate-100">
+                                                {item.name[0]}
                                             </div>
-                                            <div className="flex flex-wrap gap-3 mt-4">
-                                                {item.features.map(f => (
-                                                    <span key={f} className="flex items-center gap-1.5 text-xs font-medium text-slate-500 bg-slate-50 px-2.5 py-1 rounded-lg">
-                                                        <Check size={12} className="text-emerald-500" /> {f}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-
-                                        <div className="flex items-center gap-8 text-center md:text-right">
                                             <div>
-                                                <div className="flex items-center gap-1 text-amber-400 font-bold text-sm justify-center md:justify-end">
-                                                    <Star size={14} fill="currentColor" /> {item.rating}
-                                                </div>
-                                                <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Rating</div>
-                                            </div>
-                                            <div className="min-w-[120px]">
-                                                <div className="text-3xl font-black text-slate-900">
-                                                    {item.price.toFixed(2)}
-                                                </div>
-                                                <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-2">CHF / Monat</div>
+                                                <h3 className="font-bold text-lg text-slate-900">{item.name}</h3>
+                                                <span className="text-xs font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded-full uppercase tracking-tighter">{item.model}</span>
                                             </div>
                                         </div>
-
-                                        <a href={item.url} target="_blank" rel="noopener noreferrer" className="bg-slate-900 hover:bg-red-600 text-white px-6 py-3 rounded-xl font-bold transition-all text-sm whitespace-nowrap">
-                                            Offerte anfordern
-                                        </a>
+                                        <div className="flex flex-wrap gap-3 mt-4">
+                                            {item.features.map(f => (
+                                                <span key={f} className="flex items-center gap-1.5 text-xs font-medium text-slate-500 bg-slate-50 px-2.5 py-1 rounded-lg">
+                                                    <Check size={12} className="text-emerald-500" /> {f}
+                                                </span>
+                                            ))}
+                                        </div>
                                     </div>
-                                </motion.div>
-                            ))
+
+                                    <div className="flex items-center gap-8 text-center md:text-right">
+                                        <div>
+                                            <div className="flex items-center gap-1 text-amber-400 font-bold text-sm justify-center md:justify-end">
+                                                <Star size={14} fill="currentColor" /> {item.rating}
+                                            </div>
+                                            <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Rating</div>
+                                        </div>
+                                        <div className="min-w-[120px]">
+                                            <div className="text-3xl font-black text-slate-900">
+                                                {item.price.toFixed(2)}
+                                            </div>
+                                            <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-2">CHF / Monat</div>
+                                        </div>
+                                    </div>
+
+                                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="bg-slate-900 hover:bg-red-600 text-white px-6 py-3 rounded-xl font-bold transition-all text-sm whitespace-nowrap">
+                                        Offerte anfordern
+                                    </a>
+                                </div>
+                            </motion.div>
+                        ))
                         )}
 
                         <AdUnit slot="insurance-middle" label="Empfehlung" />
