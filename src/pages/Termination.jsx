@@ -5,10 +5,18 @@ import { FileDown, Check, FileText, Home, Heart, Smartphone, Car, } from 'lucide
 import SEO from '../components/SEO';
 
 const templates = [
-    { id: 'wohnung', name: 'Wohnung kündigen', icon: Home, color: 'red' },
-    { id: 'krankenkasse', name: 'Krankenkasse kündigen', icon: Heart, color: 'blue' },
-    { id: 'handy', name: 'Handy-Abo kündigen', icon: Smartphone, color: 'purple' },
-    { id: 'autoversicherung', name: 'Autoversicherung kündigen', icon: Car, color: 'green' },
+    { id: 'wohnung', name: 'Wohnung kündigen', icon: Home, color: 'red', popular: true },
+    { id: 'krankenkasse', name: 'Krankenkasse kündigen', icon: Heart, color: 'blue', popular: true },
+    { id: 'handy', name: 'Handy-Abo kündigen', icon: Smartphone, color: 'purple', popular: true },
+    { id: 'autoversicherung', name: 'Autoversicherung kündigen', icon: Car, color: 'green', popular: true },
+    { id: 'fitness', name: 'Fitnessstudio kündigen', icon: FileText, color: 'orange' },
+    { id: 'internet', name: 'Internet/TV-Abo kündigen', icon: FileText, color: 'cyan' },
+    { id: 'zeitung', name: 'Zeitung/Zeitschrift kündigen', icon: FileText, color: 'slate' },
+    { id: 'strom', name: 'Stromversorger kündigen', icon: FileText, color: 'yellow' },
+    { id: 'bank', name: 'Bankkonto kündigen', icon: FileText, color: 'indigo' },
+    { id: 'versicherung', name: 'Versicherung allgemein', icon: FileText, color: 'teal' },
+    { id: 'arbeit', name: 'Arbeitsvertrag kündigen', icon: FileText, color: 'rose' },
+    { id: 'verein', name: 'Vereinsmitgliedschaft', icon: FileText, color: 'emerald' },
 ];
 
 const Termination = () => {
@@ -54,18 +62,57 @@ const Termination = () => {
         let title = "Kündigung";
         let bodyText = "";
 
-        if (selectedTemplate === 'wohnung') {
-            title = "Kündigung des Mietvertrags";
-            bodyText = `Sehr geehrte Damen und Herren,\n\nHiermit kündige ich den Mietvertrag für das Objekt "${formData.objectDesc}" an der Adresse ${formData.senderAddress} fristgerecht auf den ${formData.terminationDate || 'nächstmöglichen Termin'}.\n\nBitte bestätigen Sie mir den Erhalt dieser Kündigung sowie das Austrittsdatum schriftlich.\n\nBesten Dank für die Kenntnisnahme.\n\nFreundliche Grüsse`;
-        } else if (selectedTemplate === 'krankenkasse') {
-            title = "Kündigung der Krankenkasse (Grundversicherung)";
-            bodyText = `Sehr geehrte Damen und Herren,\n\nHiermit kündige ich meine Grundversicherung (Versicherungsnummer: ${formData.contractNumber || '...'}) per ${formData.terminationDate || '31. Dezember 2025'} fristgerecht.\n\nGemäss Art. 7 KVG erfolgt die Kündigung bei Erhalt Ihrer Prämienrechnung für das kommende Jahr bis spätestens 30. November.\n\nIch bitte um eine schriftliche Bestätigung dieser Kündigung.\n\nFreundliche Grüsse`;
-        } else if (selectedTemplate === 'handy') {
-            title = "Kündigung des Handy-Abonnements";
-            bodyText = `Sehr geehrte Damen und Herren,\n\nHiermit kündige ich mein Handy-Abonnement (Vertragsnummer: ${formData.contractNumber || '...'}) fristgerecht per ${formData.terminationDate || 'per sofort bzw. nächstmöglicher Termin'}.\n\nBitte bestätigen Sie mir den Erhalt dieser Kündigung sowie das Ende der Vertragslaufzeit schriftlich.\n\nFreundliche Grüsse`;
-        } else if (selectedTemplate === 'autoversicherung') {
-            title = "Kündigung der Autoversicherung";
-            bodyText = `Sehr geehrte Damen und Herren,\n\nHiermit kündige ich die Autoversicherung für mein Fahrzeug (Kennzeichen: ${formData.contractNumber || '...'}) fristgerecht per ${formData.terminationDate || '31. Dezember 2025'}.\n\nGemäss den allgemeinen Versicherungsbedingungen läuft die Kündigung per Ende des Versicherungsjahres.\n\nIch bitte um eine schriftliche Kündigungsbestätigung.\n\nFreundliche Grüsse`;
+        switch (selectedTemplate) {
+            case 'wohnung':
+                title = "Kündigung des Mietvertrags";
+                bodyText = `Sehr geehrte Damen und Herren,\n\nHiermit kündige ich den Mietvertrag für das Objekt "${formData.objectDesc}" an der Adresse ${formData.senderAddress} fristgerecht auf den ${formData.terminationDate || 'nächstmöglichen Termin'}.\n\nBitte bestätigen Sie mir den Erhalt dieser Kündigung sowie das Austrittsdatum schriftlich.\n\nBesten Dank für die Kenntnisnahme.\n\nFreundliche Grüsse`;
+                break;
+            case 'krankenkasse':
+                title = "Kündigung der Krankenkasse (Grundversicherung)";
+                bodyText = `Sehr geehrte Damen und Herren,\n\nHiermit kündige ich meine Grundversicherung (Versicherungsnummer: ${formData.contractNumber || '...'}) per ${formData.terminationDate || '31. Dezember 2025'} fristgerecht.\n\nGemäss Art. 7 KVG erfolgt die Kündigung bei Erhalt Ihrer Prämienrechnung für das kommende Jahr bis spätestens 30. November.\n\nIch bitte um eine schriftliche Bestätigung dieser Kündigung.\n\nFreundliche Grüsse`;
+                break;
+            case 'handy':
+                title = "Kündigung des Handy-Abonnements";
+                bodyText = `Sehr geehrte Damen und Herren,\n\nHiermit kündige ich mein Handy-Abonnement (Vertragsnummer: ${formData.contractNumber || '...'}) fristgerecht per ${formData.terminationDate || 'per sofort bzw. nächstmöglicher Termin'}.\n\nBitte bestätigen Sie mir den Erhalt dieser Kündigung sowie das Ende der Vertragslaufzeit schriftlich.\n\nFreundliche Grüsse`;
+                break;
+            case 'autoversicherung':
+                title = "Kündigung der Autoversicherung";
+                bodyText = `Sehr geehrte Damen und Herren,\n\nHiermit kündige ich die Autoversicherung für mein Fahrzeug (Kennzeichen: ${formData.contractNumber || '...'}) fristgerecht per ${formData.terminationDate || '31. Dezember 2025'}.\n\nGemäss den allgemeinen Versicherungsbedingungen läuft die Kündigung per Ende des Versicherungsjahres.\n\nIch bitte um eine schriftliche Kündigungsbestätigung.\n\nFreundliche Grüsse`;
+                break;
+            case 'fitness':
+                title = "Kündigung der Fitnessstudio-Mitgliedschaft";
+                bodyText = `Sehr geehrte Damen und Herren,\n\nHiermit kündige ich meine Mitgliedschaft (Mitgliedsnummer: ${formData.contractNumber || '...'}) bei Ihrem Fitnessstudio fristgerecht per ${formData.terminationDate || 'nächstmöglicher Termin'}.\n\nIch bitte um eine schriftliche Bestätigung dieser Kündigung.\n\nFreundliche Grüsse`;
+                break;
+            case 'internet':
+                title = "Kündigung des Internet- und TV-Abonnements";
+                bodyText = `Sehr geehrte Damen und Herren,\n\nHiermit kündige ich mein Internet- und TV-Abonnement (Kundennummer: ${formData.contractNumber || '...'}) fristgerecht per ${formData.terminationDate || 'nächstmöglicher Termin'}.\n\nBitte bestätigen Sie mir den Erhalt dieser Kündigung sowie das Vertragsende schriftlich.\n\nFreundliche Grüsse`;
+                break;
+            case 'zeitung':
+                title = "Kündigung des Zeitungs-/Zeitschriften-Abonnements";
+                bodyText = `Sehr geehrte Damen und Herren,\n\nHiermit kündige ich mein Abonnement (Abonummer: ${formData.contractNumber || '...'}) fristgerecht per ${formData.terminationDate || 'nächstmöglicher Termin'}.\n\nIch bitte um eine schriftliche Bestätigung.\n\nFreundliche Grüsse`;
+                break;
+            case 'strom':
+                title = "Kündigung des Stromvertrags";
+                bodyText = `Sehr geehrte Damen und Herren,\n\nHiermit kündige ich meinen Stromliefervertrag für die Adresse ${formData.senderAddress} (Vertragsnummer: ${formData.contractNumber || '...'}) fristgerecht per ${formData.terminationDate || 'nächstmöglicher Termin'}.\n\nBitte bestätigen Sie mir den Erhalt dieser Kündigung schriftlich.\n\nFreundliche Grüsse`;
+                break;
+            case 'bank':
+                title = "Kündigung des Bankkontos";
+                bodyText = `Sehr geehrte Damen und Herren,\n\nHiermit kündige ich mein Bankkonto (Kontonummer: ${formData.contractNumber || '...'}) bei Ihrer Bank fristgerecht per ${formData.terminationDate || 'nächstmöglicher Termin'}.\n\nBitte überweisen Sie das Restguthaben auf folgendes Konto: [neue IBAN].\n\nFreundliche Grüsse`;
+                break;
+            case 'versicherung':
+                title = "Kündigung der Versicherung";
+                bodyText = `Sehr geehrte Damen und Herren,\n\nHiermit kündige ich meine Versicherung (Policennummer: ${formData.contractNumber || '...'}) fristgerecht per ${formData.terminationDate || '31. Dezember 2025'}.\n\nIch bitte um eine schriftliche Kündigungsbestätigung.\n\nFreundliche Grüsse`;
+                break;
+            case 'arbeit':
+                title = "Kündigung des Arbeitsverhältnisses";
+                bodyText = `Sehr geehrte Damen und Herren,\n\nHiermit kündige ich mein Arbeitsverhältnis als ${formData.objectDesc || '[Position]'} bei ${formData.receiverName || 'Ihrer Firma'} fristgerecht per ${formData.terminationDate || 'nächstmöglicher Termin'} unter Einhaltung der vertraglichen Kündigungsfrist.\n\nIch bedanke mich für die gute Zusammenarbeit und bitte um Ausstellung eines qualifizierten Arbeitszeugnisses.\n\nFreundliche Grüsse`;
+                break;
+            case 'verein':
+                title = "Kündigung der Vereinsmitgliedschaft";
+                bodyText = `Sehr geehrte Damen und Herren,\n\nHiermit kündige ich meine Mitgliedschaft im Verein ${formData.receiverName || '[Vereinsname]'} (Mitgliedsnummer: ${formData.contractNumber || '...'}) fristgerecht per ${formData.terminationDate || 'nächstmöglicher Termin'}.\n\nIch bitte um eine schriftliche Bestätigung.\n\nFreundliche Grüsse`;
+                break;
+            default:
+                bodyText = "Vorlage wird geladen...";
         }
 
         doc.text(title, 20, y); y += 10;
@@ -127,20 +174,24 @@ const Termination = () => {
 
             <div className="container mx-auto px-6">
                 {/* Template Selection */}
-                <div className="max-w-5xl mx-auto mb-12">
-                    <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">Wählen Sie Ihre Vorlage</h2>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="max-w-6xl mx-auto mb-12">
+                    <h2 className="text-2xl font-bold text-slate-900 mb-2 text-center">Wählen Sie Ihre Vorlage</h2>
+                    <p className="text-slate-500 text-center mb-8">12 rechtssichere Kündigungsvorlagen für die Schweiz</p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         {templates.map((t) => (
                             <button
                                 key={t.id}
                                 onClick={() => setSelectedTemplate(t.id)}
-                                className={`p-6 rounded-2xl border-2 transition-all text-center ${selectedTemplate === t.id
-                                        ? `border-${t.color}-600 bg-${t.color}-50 shadow-lg`
+                                className={`relative p-4 rounded-2xl border-2 transition-all text-center ${selectedTemplate === t.id
+                                        ? 'border-red-600 bg-red-50 shadow-lg'
                                         : 'border-slate-200 bg-white hover:border-slate-300'
                                     }`}
                             >
-                                <t.icon className={`mx-auto mb-3 ${selectedTemplate === t.id ? `text-${t.color}-600` : 'text-slate-400'}`} size={32} />
-                                <span className="text-sm font-bold text-slate-900">{t.name}</span>
+                                {t.popular && (
+                                    <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">Top</span>
+                                )}
+                                <t.icon className={`mx-auto mb-2 ${selectedTemplate === t.id ? 'text-red-600' : 'text-slate-400'}`} size={24} />
+                                <span className="text-xs font-bold text-slate-900 leading-tight block">{t.name}</span>
                             </button>
                         ))}
                     </div>
